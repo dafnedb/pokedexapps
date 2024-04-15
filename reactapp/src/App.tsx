@@ -17,8 +17,8 @@ export default function App() {
     fetch(`${BASE_URL}/pokemon.json?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
-        setList(data.list)
-        setCount(data.count)
+        setList(data.listaPks.list)
+        setCount(data.listaPks.count)
       })
   }, [page])
 
@@ -75,7 +75,7 @@ export default function App() {
 				<span className="text-lg text-white font-extrabold w-1/3 text-center">Name</span>
 				<span className="text-lg text-white font-extrabold w-1/3 text-right">DELETE</span>
 			</li>
-			{list.map(pokemon => (
+			{Array.isArray(list) && list.map(pokemon => (
 				<li className="flex items-center justify-between border-b border-gray-300 p-2">
 					<span className="text-lg text-red-600 font-bold w-1/3">{pokemon.id}</span>
 					<span className="text-lg text-red-600 font-bold w-1/3 text-center">{pokemon.name}</span>
